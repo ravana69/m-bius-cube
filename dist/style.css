@@ -1,0 +1,399 @@
+.mobius .block > :nth-child(-n+2)::after, .mobius .block > :nth-child(-n+2)::before {
+  content: "";
+}
+
+.mobius .block, .mobius .block::after, .mobius .block::before,
+.mobius .block > :nth-child(-n+2),
+.mobius .block > :nth-child(-n+2)::after,
+.mobius .block > :nth-child(-n+2)::before, .mobius,
+.mobius .blocks, .scene > .block,
+.scene > .block > *, body,
+.scene {
+  position: absolute;
+  transform-style: preserve-3d;
+}
+
+.mobius .block, .mobius .block::after, .mobius .block::before,
+.mobius .block > :nth-child(-n+2),
+.mobius .block > :nth-child(-n+2)::after,
+.mobius .block > :nth-child(-n+2)::before, .mobius,
+.mobius .blocks, .scene > .block,
+.scene > .block > *, body,
+.scene {
+  display: grid;
+  place-self: center;
+}
+.mobius .block > *, .mobius .block::after > *, .mobius .block::before > *,
+.mobius .block > :nth-child(-n+2) > *,
+.mobius .block > :nth-child(-n+2)::after > *,
+.mobius .block > :nth-child(-n+2)::before > *, .mobius > *,
+.mobius .blocks > *, .scene > .block > *,
+.scene > .block > * > *, body > *,
+.scene > * {
+  place-self: center;
+}
+
+:root {
+  --perspective: 400vmin;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  perspective: var(--perspective);
+  background: var(--background, #000);
+}
+
+@media screen and (orientation: portrait) {
+  .themes {
+    --test: portrait;
+  }
+}
+@media screen and (orientation: landscape) {
+  .themes {
+    --test: landscape;
+  }
+}
+.themes.horizontal {
+  width: 100vw;
+}
+.themes.vertical {
+  height: 100vh;
+}
+.themes-trigger, .themes-menu {
+  position: absolute;
+}
+.themes-trigger, .themes-select {
+  height: 48px;
+  width: 48px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.themes-menu {
+  display: flex;
+  overflow: hidden;
+  will-change: transform;
+  transition: transform 0.5s ease-in-out;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+}
+.themes-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+.themes-menu::-webkit-scrollbar-thumb {
+  background: var(--stroke, gray);
+  border-radius: 10px;
+}
+.themes-menu::-webkit-scrollbar-thumb:hover {
+  background: var(--hover, darkgray);
+}
+.themes.horizontal .themes-menu {
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  height: 78px;
+  width: calc(100% - 48px - 20px);
+  bottom: -78px;
+  /* width */
+}
+.themes.horizontal .themes-menu::-webkit-scrollbar {
+  height: 10px;
+}
+.themes.vertical .themes-menu {
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  height: calc(100% - 48px - 20px);
+  width: 78px;
+  right: -78px;
+  /* width */
+}
+.themes.vertical .themes-menu::-webkit-scrollbar {
+  width: 10px;
+}
+.themes-select {
+  flex: 0 0 48px;
+  border: 2.5px solid var(--stroke);
+  background: linear-gradient(var(--background) 0% 25%, var(--stroke) 25% 50%, var(--fill) 50% 75%, var(--hover) 75% 100%);
+}
+.themes.horizontal .themes-select {
+  margin: 10px 5px;
+}
+.themes.vertical .themes-select {
+  margin: 5px 10px;
+}
+.themes-trigger {
+  right: 20px;
+  bottom: 10px;
+  background: conic-gradient(red, orange, yellow, green, blue, indigo, violet, red);
+}
+.themes-trigger, .themes-trigger::after {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.themes-trigger::after {
+  content: "X";
+  opacity: 0;
+  border-radius: 50%;
+  height: 48px;
+  width: 48px;
+  font-size: 32px;
+  font-weight: bold;
+  color: #000;
+  transition: 0.35s ease-in-out;
+  transition-property: opacity, color;
+}
+.themes-trigger:hover::after {
+  color: #fff;
+}
+.themes-trigger:checked::after {
+  opacity: 1;
+}
+.themes.horizontal .themes-trigger {
+  right: 10px;
+  bottom: 20px;
+}
+.themes.horizontal .themes-trigger:checked + .themes-menu {
+  transform: translatey(-78px);
+}
+.themes.vertical .themes-trigger {
+  right: 20px;
+  bottom: 10px;
+}
+.themes.vertical .themes-trigger:checked + .themes-menu {
+  transform: translatex(-78px);
+}
+
+.scene {
+  -webkit-animation: scene 60s linear infinite;
+          animation: scene 60s linear infinite;
+}
+.scene > .block {
+  --mode: 6;
+}
+.scene > .block > * {
+  transform: var(--transform);
+}
+.scene > .block > *:nth-of-type(1), .scene > .block > *:nth-of-type(2) {
+  height: 56.9008251056vmin;
+  width: 56.9008251056vmin;
+}
+.scene > .block > *:nth-of-type(1) {
+  --transform: rotatey(0deg) translatez(calc(56.9008251056vmin / 2));
+}
+.scene > .block > *:nth-of-type(2) {
+  --transform: rotatey(-180deg) translatez(calc(56.9008251056vmin / 2));
+}
+.scene > .block > *:nth-of-type(3), .scene > .block > *:nth-of-type(4) {
+  height: 56.9008251056vmin;
+  width: 56.9008251056vmin;
+}
+.scene > .block > *:nth-of-type(3) {
+  --transform: rotatey(90deg) translatez(calc(56.9008251056vmin / 2));
+}
+.scene > .block > *:nth-of-type(4) {
+  --transform: rotatey(-90deg) translatez(calc(56.9008251056vmin / 2));
+}
+.scene > .block > *:nth-of-type(5), .scene > .block > *:nth-of-type(6) {
+  height: 56.9008251056vmin;
+  width: 56.9008251056vmin;
+}
+.scene > .block > *:nth-of-type(5) {
+  --transform: rotatex(90deg) translatez(calc(56.9008251056vmin / 2));
+}
+.scene > .block > *:nth-of-type(6) {
+  --transform: rotatex(-90deg) translatez(calc(56.9008251056vmin / 2));
+}
+
+.mobius {
+  -webkit-animation: mobius 30s linear infinite;
+          animation: mobius 30s linear infinite;
+}
+.mobius .blocks {
+  --blocks: 20;
+}
+.mobius .block {
+  transform: var(--transform) rotate3d(0, 1, 0, var(--angle));
+  -webkit-animation: block 15s linear infinite;
+          animation: block 15s linear infinite;
+  --mode: 2;
+}
+.mobius .block > :nth-child(-n+2) {
+  height: 5.4752062764vmin;
+  width: 5.4752062764vmin;
+}
+.mobius .block > :nth-child(-n+2), .mobius .block > :nth-child(-n+2)::after, .mobius .block > :nth-child(-n+2)::before {
+  background: #fff;
+  border: 0.5475206276vmin solid var(--background);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  transform: var(--transform);
+}
+.mobius .block > :nth-child(-n+2)::after, .mobius .block > :nth-child(-n+2)::before {
+  transform-origin: var(--origin);
+}
+.mobius .block > :nth-child(-n+2):nth-child(1) {
+  --transform: rotatex(0deg) translatez(calc(5.4752062764vmin / 2));
+}
+.mobius .block > :nth-child(-n+2):nth-child(1)::after, .mobius .block > :nth-child(-n+2):nth-child(1)::before {
+  height: 5.4752062764vmin;
+  width: 5.4752062764vmin;
+}
+.mobius .block > :nth-child(-n+2):nth-child(1)::after {
+  --transform: rotatey(90deg) translatez(5.4752062764vmin);
+  --origin: left;
+}
+.mobius .block > :nth-child(-n+2):nth-child(1)::before {
+  --transform: rotatey(-90deg) translatez(5.4752062764vmin);
+  --origin: right;
+}
+.mobius .block > :nth-child(-n+2):nth-child(2) {
+  --transform: rotatex(180deg) translatez(calc(5.4752062764vmin / 2));
+}
+.mobius .block > :nth-child(-n+2):nth-child(2)::after, .mobius .block > :nth-child(-n+2):nth-child(2)::before {
+  height: 5.4752062764vmin;
+  width: 5.4752062764vmin;
+}
+.mobius .block > :nth-child(-n+2):nth-child(2)::after {
+  --transform: rotatex(90deg) translatez(5.4752062764vmin);
+  --origin: bottom;
+}
+.mobius .block > :nth-child(-n+2):nth-child(2)::before {
+  --transform: rotatex(-90deg) translatez(5.4752062764vmin);
+  --origin: top;
+}
+.mobius .block:nth-child(1) {
+  --angle: 0deg;
+  --transform: rotatez(var(--angle)) translatex(20.0221490986vmin);
+}
+.mobius .block:nth-child(2) {
+  --angle: 18deg;
+  --transform: rotatez(var(--angle)) translatex(20.0221490986vmin);
+}
+.mobius .block:nth-child(3) {
+  --angle: 36deg;
+  --transform: rotatez(var(--angle)) translatex(20.0221490986vmin);
+}
+.mobius .block:nth-child(4) {
+  --angle: 54deg;
+  --transform: rotatez(var(--angle)) translatex(20.0221490986vmin);
+}
+.mobius .block:nth-child(5) {
+  --angle: 72deg;
+  --transform: rotatez(var(--angle)) translatex(20.0221490986vmin);
+}
+.mobius .block:nth-child(6) {
+  --angle: 90deg;
+  --transform: rotatez(var(--angle)) translatex(20.0221490986vmin);
+}
+.mobius .block:nth-child(7) {
+  --angle: 108deg;
+  --transform: rotatez(var(--angle)) translatex(20.0221490986vmin);
+}
+.mobius .block:nth-child(8) {
+  --angle: 126deg;
+  --transform: rotatez(var(--angle)) translatex(20.0221490986vmin);
+}
+.mobius .block:nth-child(9) {
+  --angle: 144deg;
+  --transform: rotatez(var(--angle)) translatex(20.0221490986vmin);
+}
+.mobius .block:nth-child(10) {
+  --angle: 162deg;
+  --transform: rotatez(var(--angle)) translatex(20.0221490986vmin);
+}
+.mobius .block:nth-child(11) {
+  --angle: 180deg;
+  --transform: rotatez(var(--angle)) translatex(20.0221490986vmin);
+}
+.mobius .block:nth-child(12) {
+  --angle: 198deg;
+  --transform: rotatez(var(--angle)) translatex(20.0221490986vmin);
+}
+.mobius .block:nth-child(13) {
+  --angle: 216deg;
+  --transform: rotatez(var(--angle)) translatex(20.0221490986vmin);
+}
+.mobius .block:nth-child(14) {
+  --angle: 234deg;
+  --transform: rotatez(var(--angle)) translatex(20.0221490986vmin);
+}
+.mobius .block:nth-child(15) {
+  --angle: 252deg;
+  --transform: rotatez(var(--angle)) translatex(20.0221490986vmin);
+}
+.mobius .block:nth-child(16) {
+  --angle: 270deg;
+  --transform: rotatez(var(--angle)) translatex(20.0221490986vmin);
+}
+.mobius .block:nth-child(17) {
+  --angle: 288deg;
+  --transform: rotatez(var(--angle)) translatex(20.0221490986vmin);
+}
+.mobius .block:nth-child(18) {
+  --angle: 306deg;
+  --transform: rotatez(var(--angle)) translatex(20.0221490986vmin);
+}
+.mobius .block:nth-child(19) {
+  --angle: 324deg;
+  --transform: rotatez(var(--angle)) translatex(20.0221490986vmin);
+}
+.mobius .block:nth-child(20) {
+  --angle: 342deg;
+  --transform: rotatez(var(--angle)) translatex(20.0221490986vmin);
+}
+.mobius .face:first-child, .mobius .face:last-child {
+  background: var(--fill);
+}
+.mobius .face:first-child::after, .mobius .face:first-child::before {
+  background: var(--hover);
+}
+.mobius .face:last-child::after, .mobius .face:last-child::before {
+  background: var(--background);
+}
+@-webkit-keyframes block {
+  to {
+    transform: var(--transform) rotate3d(0, 1, 0, calc(var(--angle) + 1turn));
+  }
+}
+@keyframes block {
+  to {
+    transform: var(--transform) rotate3d(0, 1, 0, calc(var(--angle) + 1turn));
+  }
+}
+
+@-webkit-keyframes scene {
+  to {
+    transform: rotate3d(1, 1, 1, 1turn);
+  }
+}
+
+@keyframes scene {
+  to {
+    transform: rotate3d(1, 1, 1, 1turn);
+  }
+}
+@-webkit-keyframes mobius {
+  to {
+    transform: rotate3d(0, 0, 1, 1turn);
+  }
+}
+@keyframes mobius {
+  to {
+    transform: rotate3d(0, 0, 1, 1turn);
+  }
+}

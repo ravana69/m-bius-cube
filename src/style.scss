@@ -1,0 +1,59 @@
+$blocks: 20;
+$radius: 17.5vmin;
+
+$mobius-bleached: true;
+$mobius-backface: false;
+
+$cube-colored: false;
+$cube-bordered: false;
+
+$time-block: 15s;
+$time-mobius: 30s;
+$time-scene: 60s;
+
+$side: radius-to-side($radius, $blocks);
+$size: $radius * 2 + $side * 4;
+
+.scene {
+	animation: scene $time-scene linear infinite;
+
+	> .block {
+		@include block(
+			$mode: 6,
+			$size: $size,
+			$border: $side / 4,
+			$fill: if($cube-colored, var(--fill), null),
+			$stroke: var(--stroke),
+			$bordered: $cube-bordered
+		);
+	}
+}
+
+.mobius {
+	@include mobius(
+		$length: $blocks,
+		$radius: $radius,
+		$time: $time-block,
+		$border: 0.1,
+		$alpha: 0.5,
+		$gap: 0,
+		$bleached: $mobius-bleached,
+		$bordered: true,
+		$backface: $mobius-backface,
+		$reversed: false
+	);
+
+	animation: mobius $time-mobius linear infinite;
+}
+
+@keyframes scene {
+	to {
+		transform: rotate3d(1, 1, 1, 1turn);
+	}
+}
+
+@keyframes mobius {
+	to {
+		transform: rotate3d(0, 0, 1, 1turn);
+	}
+}
